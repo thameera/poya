@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta name="title" content="Next Poya When?" />
+    <meta name="description" content="When is the next Poya day? Coz we love poya days!"/>
+    <meta name="keywords" content="poya, sri lanka, holidays"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Happy+Monkey' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        html, body {height: 95%}
+        body {
+            text-align: center;
+            position: relative;
+        }
+
+        .main {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            width: 50%;
+            margin: auto;
+            font-family: 'Happy Monkey', cursive;
+            color: black;
+        }
+
+        a:link { text-decoration: none; color: #555555; }
+        a:visited { text-decoration: none; color: #555555; }
+        a:hover { text-decoration: none; color: #777777; }
+
+        .row1 {
+            font-size: 32px;
+        }
+
+        .row2 {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+
+        .row3 {
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        .share {
+            margin-top: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>
+
