@@ -40,7 +40,6 @@ def getnextpoya(today):
             if dt > today:
                 return dt
     except:
-        assert False
         return None
     return None
 
