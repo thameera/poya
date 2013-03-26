@@ -35,8 +35,13 @@ def nextpoya(request):
 
 def getnextpoya(today):
     try:
-        with open('poyadays.txt') as f:
-            dt = datetime.strptime(f.readline().strip(), '%d %m %Y').date()
+        f = open('poyadays.txt')
+        dates = f.readlines()
+        f.close()
+
+        for zdt in dates:
+            zdt = zdt.strip()
+            dt = datetime.strptime(zdt, '%d %m %Y').date()
             if dt > today:
                 return dt
     except:
