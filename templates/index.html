@@ -13,6 +13,10 @@
         </div>
         <div class="row3">Next poya day falls on {{ date }}. And all poya days are holidays in Sri Lanka!</div>
 
+        {% if tip %}
+        <div class="row4">{{ tip }}</div>
+        {% endif %}
+
         <div class="share">
           <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.nextpoyawhen.com" data-text="{{ days }} more day{{ daysuffix }} to the next poya, {% if happy %}aaand {% else %}but {% endif %}it's a {{ weekday }}{% if happy %}!{% endif %} {{ emoticon }}" data-size="small" data-related="thameera" data-hashtags="lka" data-dnt="true">Tweet</a>
 

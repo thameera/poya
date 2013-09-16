@@ -48,6 +48,24 @@
             font-size: 14px;
         }
 
+        .row4 {
+            margin-top: 20px;
+            -moz-animation-duration: 1s;
+            -webkit-animation-duration: 2s;
+            -moz-animation-name: slidein;
+            -webkit-animation-name: slidein;
+        }
+
+        @-moz-keyframes slidein {
+            from { -moz-transform: scale(0.0); }
+            to   { -moz-transform: scale(1.0); }
+        }
+
+        @-webkit-keyframes slidein {
+            from { -webkit-transform: scale(0.0); }
+            to   { -webkit-transform: scale(1.0); }
+        }
+
         .share {
             margin-top: 50px;
         }
