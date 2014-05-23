@@ -7,6 +7,6 @@ from views import mainView, listAllPoya, next
 
 urlpatterns = patterns('',
     url('^$', mainView),
-    url(r'^api/list$', listAllPoya),
+    url(r'^api/all$', listAllPoya),
     url(r'^api/next$', next),
 )
