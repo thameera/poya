@@ -78,11 +78,11 @@ def getPoyaByMonth(month):
 
 ### API ###
 def listAllPoya(request):
-    di = {}
+    lst = []
     for m in range(1,13):
         ctx = poyastats(m)[1]
-        di[ctx['month']] = ctx
-    return HttpResponse(simplejson.dumps(di), mimetype="application/json")
+        lst.append({ctx['month']: ctx})
+    return HttpResponse(simplejson.dumps(lst), mimetype="application/json")
 
 def next(request):
     ctx = poyastats()[1]
