@@ -41,9 +41,6 @@ def mainView(request):
     else:
         ctx['daysuffix'] = ''
 
-    if poya.month == 9:
-        ctx['tip'] = "Random Poya day tip: Visit the Colombo International Book Fair at BMICH!"
-
     return render_to_response('index.html', ctx)
 
 def getnextpoya(day):
