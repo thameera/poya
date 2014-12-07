@@ -84,3 +84,4 @@ def listAllPoya(request):
 def next(request):
     ctx = poyastats()[1]
     return HttpResponse(simplejson.dumps(ctx), mimetype="application/json")
+

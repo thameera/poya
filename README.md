@@ -32,3 +32,15 @@ Return format example:
 
     [{"date": "2014-01-15", "weekday": "Wednesday", "days": -129, "month": "January"}, {"date": "2014-02-14", "weekday": "Friday", "days": -99, "month": "February"}, {"date": "2014-03-16", "weekday": "Sunday", "days": -69, "month": "March"}, {"date": "2014-04-14", "weekday": "Monday", "days": -40, "month": "April"}, {"date": "2014-05-14", "weekday": "Wednesday", "days": -10, "month": "May"}, {"date": "2014-06-12", "weekday": "Thursday", "days": 19, "month": "June"}, {"date": "2014-07-12", "weekday": "Saturday", "days": 49, "month": "July"}, {"date": "2014-08-10", "weekday": "Sunday", "days": 78, "month": "August"}, {"date": "2014-09-08", "weekday": "Monday", "days": 107, "month": "September"}, {"date": "2014-10-08", "weekday": "Wednesday", "days": 137, "month": "October"}, {"date": "2014-11-06", "weekday": "Thursday", "days": 166, "month": "November"}, {"date": "2014-12-06", "weekday": "Saturday", "days": 196, "month": "December"}]
 
+
+## How to install
+
+NOTE: It is recommended that you use `virtualenv` to install the dependencies.
+
+    git clone https://github.com/thameera/poya.git
+    cd poya
+    pip install -r requirements.txt
+    python manage.py runserver
+
+This will start the app in port 8000. To visit, go to `localhost:8000` in your browser.
+

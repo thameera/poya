@@ -1,7 +1,7 @@
 # Django settings for nextpoyawhen project.
 import socket
 
-if socket.gethostname() == 'poya-3014':
+if 'thameera' in socket.gethostname().lower():
     # Development settings
     DEBUG = True
     ADMINS = ()
