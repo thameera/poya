@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Next Poya When?</title>
+
+  <style>
+    html {
+      height: 98%;
+      width: 98%;
+      font-family: 'Helvetica';
+    }
+
+    body, #container {
+      height: 100%;
+      width: 100%;
+    }
+
+    .centered {
+      display:inline-block;
+      text-align:center;
+    }
+  
+    .centered::before {
+      content:'';
+      display:inline-block;
+      height:100%;
+      vertical-align:middle;
+      width:0px;
+    }
+
+    #row1 {
+      font-size: 250%;
+    }
+
+    #row2 {
+      margin-top: 15px;
+      font-size: 150%;
+    }
+
+    #row3 {
+      margin-top: 40px;
+      font-size: 120%;
+    }
+
+    a:link { text-decoration: none; color: #555555; }
+    a:visited { text-decoration: none; color: #555555; }
+    a:hover { text-decoration: none; color: #777777; }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="container" class="centered">
+    <div class="centered">
+      <div id="row1"></div>
+      <div id="row2"></div>
+      <div id="row3"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var poyadays = [
+        [2017, 1, 12],
+        [2017, 2, 10],
+        [2017, 3, 12],
+        [2017, 4, 10],
+        [2017, 5, 10],
+        [2017, 6, 8],
+        [2017, 7, 8],
+        [2017, 8, 7],
+        [2017, 9, 5],
+        [2017, 10, 5],
+        [2017, 11, 3],
+        [2017, 12, 3],
+      ];
+
+      poyadays = poyadays.map(function(day) {
+        return new Date(day[0], day[1]-1, day[2]);
+      });
+
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+      var getNextPoya = function() {
+        return poyadays.filter(function(poya) {
+          return (poya-today) > 0;
+        })[0];
+      };
+
+      var getDayDiff = function(a, b) {
+        return Math.floor((b-a)/(1000*60*60*24));
+      };
+
+      var getDescriptiveDate = function(date) {
+        var day = date.getDay();
+        var isWeekday = (day > 0) && (day < 6);
+        var dayDiff = getDayDiff(today, date);
+        var dayString = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
+        return {
+          date: date,
+          dateStr: date.getFullYear() + '/' + (date.getMonth()+1) + '/' + date.getDate(),
+          dayStr: dayString,
+          isWeekday: isWeekday,
+          dayDiff: dayDiff
+        };
+      };
+
+      var writeOutput = function(date) {
+        var str = date.dayDiff + ' more day';
+        str += date.dayDiff > 1 ? 's' : '';
+        str += ' to the next <a href="http://en.wikipedia.org/wiki/Poya">poya</a>';
+        document.querySelector('#row1').innerHTML = str;
+
+        if (date.isWeekday) {
+          str = 'Aaand it\'s a ' + date.dayStr + '!! :)';
+        } else {
+          str = 'But it\'s a ' + date.dayStr + '!! :(';
+        }
+        document.querySelector('#row2').innerHTML = str;
+
+        str = 'Next poya day falls on ' + date.dateStr + '. And all poya days are holidays in Sri Lanka!';
+        document.querySelector('#row3').innerHTML = str;
+      };
+
+      window.onload = function() {
+        var nextPoya = getNextPoya();
+        writeOutput(getDescriptiveDate(nextPoya));
+      };
+    })();
+  </script>
+</body>
+</html>
