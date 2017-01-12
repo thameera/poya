@@ -6,8 +6,8 @@
 
   <style>
     html {
-      height: 98%;
-      width: 98%;
+      height: 90%;
+      width: 95%;
       font-family: 'Helvetica';
     }
 
@@ -17,6 +17,7 @@
     }
 
     .centered {
+      padding-top: 60px;
       display:inline-block;
       text-align:center;
     }
@@ -43,6 +44,16 @@
       font-size: 120%;
     }
 
+    #share {
+      margin-top: 50px;
+    }
+
+    .share-btn {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 5px;
+    }
+
     a:link { text-decoration: none; color: #555555; }
     a:visited { text-decoration: none; color: #555555; }
     a:hover { text-decoration: none; color: #777777; }
@@ -52,16 +63,30 @@
 
 <body>
 
+
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
   <div id="container" class="centered">
     <div class="centered">
       <div id="row1"></div>
       <div id="row2"></div>
       <div id="row3"></div>
+
+      <div id="share"></div>
     </div>
   </div>
-
   <script>
     (function() {
+      var shareText;
+
       var poyadays = [
         [2017, 1, 12],
         [2017, 2, 10],
@@ -109,25 +134,45 @@
       };
 
       var writeOutput = function(date) {
-        var str = date.dayDiff + ' more day';
-        str += date.dayDiff > 1 ? 's' : '';
-        str += ' to the next <a href="http://en.wikipedia.org/wiki/Poya">poya</a>';
-        document.querySelector('#row1').innerHTML = str;
+        var str1, str2, str3, tweetText;
+
+        str1 = date.dayDiff + ' more day';
+        str1 += date.dayDiff > 1 ? 's' : '';
+        tweetText = str1;
+        str1 += ' to the next <a href="http://en.wikipedia.org/wiki/Poya">poya</a>';
+        tweetText += ' to the next poya. ';
+        document.querySelector('#row1').innerHTML = str1;
 
         if (date.isWeekday) {
-          str = 'Aaand it\'s a ' + date.dayStr + '!! :)';
+          str2 = 'Aaand it\'s a ' + date.dayStr + '!! :)';
         } else {
-          str = 'But it\'s a ' + date.dayStr + '!! :(';
+          str2 = 'But it\'s a ' + date.dayStr + '!! :(';
         }
-        document.querySelector('#row2').innerHTML = str;
+        tweetText += str2;
+        document.querySelector('#row2').innerHTML = str2;
 
-        str = 'Next poya day falls on ' + date.dateStr + '. And all poya days are holidays in Sri Lanka!';
-        document.querySelector('#row3').innerHTML = str;
+        str3 = 'Next poya day falls on ' + date.dateStr + '. And all poya days are holidays in Sri Lanka!';
+        document.querySelector('#row3').innerHTML = str3;
+
+        var tweet = '<div class="share-btn"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://nextpoyawhen.com" data-text="' + tweetText + '" data-size="small" data-related="thameera" data-hashtags="lka" data-dnt="true">Tweet</a></div>';
+        var fbshare = '<div class="share-btn"><div class="fb-share-button" data-href="http://nextpoyawhen.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fnextpoyawhen.com%2F&amp;src=sdkpreparse">Share</a></div></div>';
+        document.querySelector('#share').innerHTML = tweet + fbshare;
+        loadTwitter();
       };
 
       window.onload = function() {
         var nextPoya = getNextPoya();
         writeOutput(getDescriptiveDate(nextPoya));
+      };
+
+      var loadTwitter = function() {
+        window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+          if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+          t._e = []; t.ready = function(f) { t._e.push(f); };
+          return t;
+        }(document, "script", "twitter-wjs"));
       };
     })();
   </script>
