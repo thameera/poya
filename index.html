@@ -5,54 +5,23 @@
   <title>Next Poya When?</title>
 
   <style>
-    html {
-      height: 90%;
-      width: 95%;
-      font-family: 'Helvetica';
-    }
+    html { height: 90%; width: 95%; font-family: 'Helvetica'; }
 
-    body, #container {
-      height: 100%;
-      width: 100%;
-    }
+    body, #container { height: 100%; width: 100%; }
 
-    .centered {
-      padding-top: 60px;
-      display:inline-block;
-      text-align:center;
-    }
+    .centered { padding-top: 60px; display: inline-block; text-align: center; }
   
-    .centered::before {
-      content:'';
-      display:inline-block;
-      height:100%;
-      vertical-align:middle;
-      width:0px;
-    }
+    .centered::before { content: ''; display: inline-block; height: 100%; vertical-align: middle; width: 0px; }
 
-    #row1 {
-      font-size: 250%;
-    }
+    #row1 { font-size: 250%; }
 
-    #row2 {
-      margin-top: 15px;
-      font-size: 150%;
-    }
+    #row2 { margin-top: 15px; font-size: 150%; }
 
-    #row3 {
-      margin-top: 40px;
-      font-size: 120%;
-    }
+    #row3 { margin-top: 40px; font-size: 120%; }
 
-    #share {
-      margin-top: 50px;
-    }
+    #share { margin-top: 50px; }
 
-    .share-btn {
-      display: inline-block;
-      vertical-align: top;
-      margin-right: 5px;
-    }
+    .share-btn { display: inline-block; vertical-align: top; margin-right: 5px; }
 
     a:link { text-decoration: none; color: #555555; }
     a:visited { text-decoration: none; color: #555555; }
@@ -63,17 +32,15 @@
 
 <body>
 
-
   <div id="fb-root"></div>
   <script>
     (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id; js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
+
   <div id="container" class="centered">
     <div class="centered">
       <div id="row1"></div>
@@ -83,6 +50,7 @@
       <div id="share"></div>
     </div>
   </div>
+
   <script>
     (function() {
       var shareText;
@@ -160,11 +128,6 @@
         loadTwitter();
       };
 
-      window.onload = function() {
-        var nextPoya = getNextPoya();
-        writeOutput(getDescriptiveDate(nextPoya));
-      };
-
       var loadTwitter = function() {
         window.twttr = (function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
@@ -174,7 +137,13 @@
           return t;
         }(document, "script", "twitter-wjs"));
       };
+
+      window.onload = function() {
+        var nextPoya = getNextPoya();
+        writeOutput(getDescriptiveDate(nextPoya));
+      };
     })();
   </script>
+
 </body>
 </html>
