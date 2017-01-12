@@ -88,6 +88,11 @@
         return Math.floor((b-a)/(1000*60*60*24));
       };
 
+      var pad = function(num) {
+        var s = '0' + num;
+        return s.substr(s.length - 2);
+      };
+
       var getDescriptiveDate = function(date) {
         var day = date.getDay();
         var isWeekday = (day > 0) && (day < 6);
@@ -95,7 +100,7 @@
         var dayString = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
         return {
           date: date,
-          dateStr: date.getFullYear() + '/' + (date.getMonth()+1) + '/' + date.getDate(),
+          dateStr: date.getFullYear() + '/' + pad(date.getMonth()+1) + '/' + pad(date.getDate()),
           dayStr: dayString,
           isWeekday: isWeekday,
           dayDiff: dayDiff
