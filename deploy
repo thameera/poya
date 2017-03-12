@@ -1,3 +1,4 @@
 #!/bin/bash
 
 aws s3 cp index.html s3://nextpoyawhen.com
+aws s3 cp status/index.html s3://status.nextpoyawhen.com
