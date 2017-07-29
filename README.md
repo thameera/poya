@@ -8,4 +8,4 @@ Poya occurs every full moon day. It's a public holiday in Sri Lanka, so everyone
 
 ## API
 
-Poya API is not available in this new version. For the old version, check out https://github.com/thameera/poya.
+You can get the JSON array of poya days from the endpoint http://nextpoyawhen.com/poya.json

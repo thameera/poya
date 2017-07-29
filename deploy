@@ -1,4 +1,7 @@
 #!/bin/bash
 
-aws s3 cp index.html s3://nextpoyawhen.com
+./replace.sh
+
+aws s3 cp index_stage.html s3://nextpoyawhen.com/index.html
+aws s3 cp poya.json s3://nextpoyawhen.com
 aws s3 cp status/index.html s3://status.nextpoyawhen.com
