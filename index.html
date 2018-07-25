@@ -41,7 +41,7 @@
   <script>
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id; js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      js = d.createElement(s); js.id = id; js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
@@ -56,9 +56,9 @@
     </div>
 
     <div id="footer">
-      <a href="https://github.com/thameera/poya">Github</a>
+      <a href="https://github.com/thameera/poya2">Github</a>
       <a href="https://twitter.com/thameera">Twitter</a>
-      <a href="http://status.nextpoyawhen.com">Status</a>
+      <a href="https://status.nextpoyawhen.com">Status</a>
     </div>
   </div>
 
@@ -108,7 +108,7 @@
         str1 = date.dayDiff + ' more day';
         str1 += date.dayDiff > 1 ? 's' : '';
         tweetText = str1;
-        str1 += ' to the next <a href="http://en.wikipedia.org/wiki/Poya">poya</a>';
+        str1 += ' to the next <a href="https://en.wikipedia.org/wiki/Poya">poya</a>';
         tweetText += ' to the next poya. ';
         document.querySelector('#row1').innerHTML = str1;
 
@@ -123,8 +123,8 @@
         str3 = 'Next poya day falls on ' + date.dateStr + '. All poya days are holidays in Sri Lanka!';
         document.querySelector('#row3').innerHTML = str3;
 
-        var tweet = '<div class="share-btn"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://nextpoyawhen.com" data-text="' + tweetText + '" data-size="small" data-related="thameera" data-hashtags="lka" data-dnt="true">Tweet</a></div>';
-        var fbshare = '<div class="share-btn"><div class="fb-share-button" data-href="http://nextpoyawhen.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fnextpoyawhen.com%2F&amp;src=sdkpreparse">Share</a></div></div>';
+        var tweet = '<div class="share-btn"><a href="https://twitter.com/share" class="twitter-share-button" data-url="https://nextpoyawhen.com" data-text="' + tweetText + '" data-size="small" data-related="thameera" data-hashtags="lka" data-dnt="true">Tweet</a></div>';
+        var fbshare = '<div class="share-btn"><div class="fb-share-button" data-href="https://nextpoyawhen.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnextpoyawhen.com%2F&amp;src=sdkpreparse">Share</a></div></div>';
         document.querySelector('#share').innerHTML = tweet + fbshare;
         loadTwitter();
       };
