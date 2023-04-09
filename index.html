@@ -2,31 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Next Poya When?</title>
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <style>
-    html { height: 85%; width: 95%; font-family: 'Helvetica'; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    body, #container { height: 100%; width: 100%; }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Helvetica';
+      padding: 1rem;
+    }
 
-    .centered { padding-top: 60px; display: inline-block; text-align: center; }
-  
-    .centered::before { content: ''; display: inline-block; height: 100%; vertical-align: middle; width: 0px; }
+    .centered {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      text-align: center;
+      width: 100%;
+    }
 
-    #row1 { font-size: 250%; }
+    .centered-row {
+      margin-bottom: 1rem;
+    }
 
-    #row2 { margin-top: 15px; font-size: 150%; }
+    #row3 {
+      margin-top: 40px;
+    }
 
-    #row3 { margin-top: 40px; font-size: 120%; }
+    #share {
+      margin-top: 10px;
+    }
 
-    #share { margin-top: 50px; }
+    .share-btn {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 5px;
+    }
 
-    .share-btn { display: inline-block; vertical-align: top; margin-right: 5px; }
+    #footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+    }
 
-    #footer { margin-bottom: -30px; }
-
-    #footer a { font-size: 80%; padding-right: 10px; }
+    #footer a {
+      padding: 10px;
+    }
 
     a:link { text-decoration: none; color: #555555; }
     a:visited { text-decoration: none; color: #555555; }
@@ -48,11 +82,11 @@
 
   <div id="container" class="centered">
     <div class="centered">
-      <div id="row1"></div>
-      <div id="row2"></div>
-      <div id="row3"></div>
+      <div id="row1" class="centered-row"></div>
+      <div id="row2" class="centered-row"></div>
+      <div id="row3" class="centered-row"></div>
 
-      <div id="share"></div>
+      <div id="share" class="centered-row"></div>
     </div>
 
     <div id="footer">
@@ -129,6 +163,22 @@
         loadTwitter();
       };
 
+      const updateFontSizes = () => {
+        // This is done to dynamically set height on mobile browsers where URL bar height isn't included in `100vh` property
+        const body = document.body;
+        const bodyWidth = body.clientWidth;
+        body.style.minHeight = `${window.innerHeight}px`;
+
+        // Update font sizes of the rows
+        const row1 = document.getElementById('row1');
+        const row2 = document.getElementById('row2');
+        const row3 = document.getElementById('row3');
+
+        row1.style.fontSize = `calc(2rem + ${window.innerWidth * 0.01}px)`;
+        row2.style.fontSize = `calc(1.5rem + ${window.innerWidth * 0.008}px)`;
+        row3.style.fontSize = `calc(1rem + ${window.innerWidth * 0.004}px)`;
+      }
+
       var loadTwitter = function() {
         window.twttr = (function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
@@ -142,7 +192,10 @@
       window.onload = function() {
         var nextPoya = getNextPoya();
         writeOutput(getDescriptiveDate(nextPoya));
+        updateFontSizes();
       };
+
+      window.onresize = updateFontSizes;
     })();
   </script>
 
