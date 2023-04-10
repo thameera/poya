@@ -98,35 +98,27 @@
 
   <script>
     (function() {
-      var poyadays = REPLACE_ME
+      const poyadays_orig = REPLACE_ME
 
-      poyadays = poyadays.map(function(day) {
-        return new Date(day[0], day[1]-1, day[2]);
-      });
+      const poyadays = poyadays_orig.map(day => new Date(day[0], day[1]-1, day[2]));
 
-      var now = new Date();
-      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-      var getNextPoya = function() {
-        return poyadays.filter(function(poya) {
-          return (poya-today) > 0;
-        })[0];
-      };
+      const nextPoya = poyadays.filter(poya => poya-today > 0)[0];
 
-      var getDayDiff = function(a, b) {
-        return Math.floor((b-a)/(1000*60*60*24));
-      };
+      const getDayDiff = (a, b) => Math.floor((b-a)/(1000*60*60*24));
 
-      var pad = function(num) {
-        var s = '0' + num;
+      const pad = num => {
+        const s = '0' + num;
         return s.substr(s.length - 2);
-      };
+      }
 
-      var getDescriptiveDate = function(date) {
-        var day = date.getDay();
-        var isWeekday = (day > 0) && (day < 6);
-        var dayDiff = getDayDiff(today, date);
-        var dayString = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
+      const getDescriptiveDate = date => {
+        const day = date.getDay();
+        const isWeekday = (day > 0) && (day < 6);
+        const dayDiff = getDayDiff(today, date);
+        const dayString = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][day];
         return {
           date: date,
           dateStr: date.getFullYear() + '/' + pad(date.getMonth()+1) + '/' + pad(date.getDate()),
@@ -134,18 +126,17 @@
           isWeekday: isWeekday,
           dayDiff: dayDiff
         };
-      };
+      }
 
-      var writeOutput = function(date) {
-        var str1, str2, str3, tweetText;
-
-        str1 = date.dayDiff + ' more day';
+      const writeOutput = date => {
+        let str1 = date.dayDiff + ' more day';
         str1 += date.dayDiff > 1 ? 's' : '';
-        tweetText = str1;
+        let tweetText = str1;
         str1 += ' to the next <a href="https://en.wikipedia.org/wiki/Poya">poya</a>';
         tweetText += ' to the next poya. ';
         document.querySelector('#row1').innerHTML = str1;
 
+        let str2
         if (date.isWeekday) {
           str2 = 'Aaand it\'s a ' + date.dayStr + '!! :)';
         } else {
@@ -154,14 +145,14 @@
         tweetText += str2;
         document.querySelector('#row2').innerHTML = str2;
 
-        str3 = 'Next poya day falls on ' + date.dateStr + '. All poya days are holidays in Sri Lanka!';
+        const str3 = 'Next poya day falls on ' + date.dateStr + '. All poya days are holidays in Sri Lanka!';
         document.querySelector('#row3').innerHTML = str3;
 
-        var tweet = '<div class="share-btn"><a href="https://twitter.com/share" class="twitter-share-button" data-url="https://nextpoyawhen.com" data-text="' + tweetText + '" data-size="small" data-related="thameera" data-hashtags="lka" data-dnt="true">Tweet</a></div>';
-        var fbshare = '<div class="share-btn"><div class="fb-share-button" data-href="https://nextpoyawhen.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnextpoyawhen.com%2F&amp;src=sdkpreparse">Share</a></div></div>';
+        const tweet = '<div class="share-btn"><a href="https://twitter.com/share" class="twitter-share-button" data-url="https://nextpoyawhen.com" data-text="' + tweetText + '" data-size="small" data-related="thameera" data-hashtags="lka" data-dnt="true">Tweet</a></div>';
+        const fbshare = '<div class="share-btn"><div class="fb-share-button" data-href="https://nextpoyawhen.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnextpoyawhen.com%2F&amp;src=sdkpreparse">Share</a></div></div>';
         document.querySelector('#share').innerHTML = tweet + fbshare;
         loadTwitter();
-      };
+      }
 
       const updateFontSizes = () => {
         // This is done to dynamically set height on mobile browsers where URL bar height isn't included in `100vh` property
@@ -179,7 +170,7 @@
         row3.style.fontSize = `calc(1rem + ${window.innerWidth * 0.004}px)`;
       }
 
-      var loadTwitter = function() {
+      const loadTwitter = () => {
         window.twttr = (function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
           if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id;
@@ -187,10 +178,9 @@
           t._e = []; t.ready = function(f) { t._e.push(f); };
           return t;
         }(document, "script", "twitter-wjs"));
-      };
+      }
 
-      window.onload = function() {
-        var nextPoya = getNextPoya();
+      window.onload = () => {
         writeOutput(getDescriptiveDate(nextPoya));
         updateFontSizes();
       };
