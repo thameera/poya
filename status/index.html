@@ -2,19 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Status - Next Poya When?</title>
   <link rel="icon" type="image/png" href="/favicon.png">
 
   <style>
-    html { height: 85%; width: 95%; font-family: 'Helvetica'; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    body, #container { height: 100%; width: 100%; }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Helvetica';
+      padding: 1rem;
+      min-height: 100vh;
+    }
 
-    .centered { padding-top: 60px; display: inline-block; text-align: center; }
+    .centered {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      text-align: center;
+      width: 100%;
+    }
 
-    .centered::before { content: ''; display: inline-block; height: 100%; vertical-align: middle; width: 0px; }
+    .centered-row {
+      margin-bottom: 1rem;
+    }
 
-    #up { font-size: 200%; margin-bottom: 10px; }
+    #up {
+      font-size: calc(2.5rem + 1vw);
+      margin-bottom: 1rem;
+    }
 
     #operational { font-size: 110%; color: #fff; background-color: #0c0; padding: 5px; padding-left: 10px; padding-right: 10px; margin-bottom: 15px; border-radius: 3px; }
   </style>
@@ -22,9 +48,9 @@
 <body>
   <div id="container" class="centered">
     <div class="centered">
-      <div id="up">It's Up!</div>
-      <div id="operational">All systems operational</div>
-      <a href="https://nextpoyawhen.com">Go to NextPoyaWhen.com</a>
+      <div id="up" class="centered-row">It's Up!</div>
+      <div id="operational" class="centered-row">All systems operational</div>
+      <a href="https://nextpoyawhen.com" class="centered-row">Go to NextPoyaWhen.com</a>
     </div>
 
     <script>console.log('j/k 😉');</script>
