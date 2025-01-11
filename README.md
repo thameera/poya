@@ -12,7 +12,7 @@ You can get the JSON array of poya days from the endpoint https://nextpoyawhen.c
 
 ## Development
 
-After making changes to `index.html`, run `./replace.sh` to update the poya days array. It will overwrite the `index-stage.html` file. This latter HTML fie is what you should run in the browser.
+After making changes to `index.html` or `poya.json`, run `./replace.sh` to update the poya days array. It will overwrite the `index-stage.html` file. This latter HTML fie is what you should run in the browser.
 
 To automatically replace when `index.html` is updated, use a command like `fswatch`:
 
